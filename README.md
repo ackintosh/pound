@@ -1,5 +1,7 @@
 # pound
 
+[![wercker status](https://app.wercker.com/status/14e7b19cc383142c62cf757b4f2feab1/s "wercker status")](https://app.wercker.com/project/bykey/14e7b19cc383142c62cf757b4f2feab1)
+
 A dummy POP3 server.
 
 
