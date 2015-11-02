@@ -20,12 +20,7 @@ func main() {
 	maildrop := NewMaildrop(current + "/.pound")
 
 	host := "localhost"
-	var port int
-	if opts.Port != 0 {
-		port = opts.Port
-	} else {
-		port = 12345
-	}
+	port := opts.Port
 	s := NewServer(host, port, maildrop)
 
 	err = s.Run()
