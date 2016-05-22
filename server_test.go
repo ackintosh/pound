@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"fmt"
 	"net"
 	"strconv"
 	"testing"
@@ -32,6 +34,24 @@ func TestRun(t *testing.T) {
 	conn, err := net.Dial("tcp", "localhost:"+strconv.Itoa(tcptestinfo.Port()))
 	if err != nil {
 		t.Errorf("Failed to connect the server localhost:%d", tcptestinfo.Port())
+	}
+
+	fmt.Fprintf(conn, "USER\n")
+	res, err := bufio.NewReader(conn).ReadString('\n')
+	if res != "+OK\n" {
+		t.Errorf("USER should return +OK")
+	}
+
+	fmt.Fprintf(conn, "PASS\n")
+	res, err = bufio.NewReader(conn).ReadString('\n')
+	if res != "+OK\n" {
+		t.Errorf("PASS should return +OK")
+	}
+
+	fmt.Fprintf(conn, "DELE\n")
+	res, err = bufio.NewReader(conn).ReadString('\n')
+	if res != "+OK\n" {
+		t.Errorf("DELE should return +OK")
 	}
 
 	conn.Close()
